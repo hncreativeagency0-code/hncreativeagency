@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="HN Creative Agency – Design. Market. Grow. A full-service digital agency for branding, web development, and digital marketing."/>
+<title>HN Creative Agency – Design. Market. Grow.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#6C63FF;
+  --primary-dark:#5549e8;
+  --secondary:#8B5CF6;
+  --bg-dark:#0F172A;
+  --bg-card:#1E293B;
+  --bg-card2:#162032;
+  --white:#FFFFFF;
+  --light:#F8FAFC;
+  --text-gray:#94A3B8;
+  --text-light:#CBD5E1;
+  --border:#334155;
+  --glass:rgba(255,255,255,0.05);
+  --glass-border:rgba(255,255,255,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--white);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;border:none;font-family:'Inter',sans-serif}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-dark)}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;transition:all 0.3s}
+nav.scrolled{background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:50px;width:auto;display:block;filter:brightness(0) invert(1)}.ceo-img{width:100%;height:650px;object-fit:contain;border-radius:24px}.ceo-img-wrap{position:relative}.ceo-name-overlay{position:absolute;left:20px;bottom:20px;right:auto;z-index:5;max-width:calc(100% - 40px);background:rgba(15,23,42,0.55);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.35);transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease}.ceo-name-overlay:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(108,99,255,0.35);border-color:rgba(108,99,255,0.4)}.ceo-name-overlay .ceo-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.15rem;color:#FFFFFF;line-height:1.3}.ceo-name-overlay .ceo-role{font-size:0.82rem;font-weight:600;color:var(--primary);margin-top:2px}.nav-logo{display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-light);font-size:0.9rem;font-weight:500;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:width 0.3s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.btn-nav{background:linear-gradient(135deg,#6C63FF,#8B5CF6);color:#fff;padding:0.55rem 1.4rem;border-radius:50px;font-size:0.9rem;font-weight:600;transition:all 0.3s;letter-spacing:0.02em}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(108,99,255,0.45)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.98);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:600;color:var(--white);transition:color 0.2s}
+.mobile-menu a:hover{color:var(--primary)}
+.close-btn{position:absolute;top:1.5rem;right:1.5rem;font-size:2rem;color:var(--white);cursor:pointer;background:none;border:none;line-height:1}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:6rem 1.5rem;max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(108,99,255,0.15);color:var(--primary);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:50px;border:1px solid rgba(108,99,255,0.3);margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:700;margin-bottom:1rem;color:var(--white)}
+.section-sub{color:var(--text-gray);font-size:1rem;max-width:560px;line-height:1.8}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:5rem}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.25;animation:float 8s ease-in-out infinite}
+.blob1{width:600px;height:600px;background:radial-gradient(circle,#6C63FF,transparent);top:-150px;right:-100px;animation-delay:0s}
+.blob2{width:400px;height:400px;background:radial-gradient(circle,#8B5CF6,transparent);bottom:-100px;left:-50px;animation-delay:3s}
+.blob3{width:300px;height:300px;background:radial-gradient(circle,#6C63FF,transparent);top:40%;left:40%;animation-delay:5s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 1.5rem;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(12px);padding:0.4rem 1rem;border-radius:50px;font-size:0.78rem;font-weight:500;color:var(--text-light);margin-bottom:1.5rem}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-headline{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem}
+.hero-headline .gradient-text{background:linear-gradient(135deg,#6C63FF,#8B5CF6,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--text-gray);font-size:1.05rem;line-height:1.8;margin-bottom:2.5rem;max-width:500px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,#6C63FF,#8B5CF6);color:#fff;padding:0.8rem 2rem;border-radius:50px;font-size:0.95rem;font-weight:600;transition:all 0.3s;letter-spacing:0.02em}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(108,99,255,0.5)}
+.btn-secondary{background:transparent;color:var(--white);padding:0.8rem 2rem;border-radius:50px;font-size:0.95rem;font-weight:600;border:1px solid var(--glass-border);transition:all 0.3s;backdrop-filter:blur(10px)}
+.btn-secondary:hover{background:var(--glass);border-color:var(--primary);transform:translateY(-2px)}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-card-stack{position:relative;width:380px;height:380px}
+.glass-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:20px;padding:1.5rem}
+.hc1{position:absolute;top:0;left:0;right:0;width:100%;animation:heroFloat1 6s ease-in-out infinite}
+.hc2{position:absolute;bottom:0;right:-20px;width:80%;animation:heroFloat2 7s ease-in-out infinite}
+.hc3{position:absolute;bottom:80px;left:-30px;width:60%;animation:heroFloat3 8s ease-in-out infinite}
+@keyframes heroFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes heroFloat2{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-8px) rotate(0deg)}}
+@keyframes heroFloat3{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(0deg)}}
+.card-label{font-size:0.72rem;color:var(--text-gray);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+.card-val{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:0.25rem}
+.card-sub{font-size:0.8rem;color:#4ade80}
+.mini-bars{display:flex;align-items:flex-end;gap:4px;height:40px;margin-top:0.75rem}
+.bar{width:12px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#6C63FF,#8B5CF6);opacity:0.7}
+.bar.active{opacity:1}
+.stats-row{display:flex;gap:1rem;margin-top:0.75rem}
+.stat-chip{background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.25);border-radius:8px;padding:0.4rem 0.75rem;text-align:center}
+.stat-chip .n{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--white)}
+.stat-chip .l{font-size:0.65rem;color:var(--text-gray);text-transform:uppercase;letter-spacing:0.06em}
+.hero-scroll{display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap}
+.scroll-stat .n{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#6C63FF,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.scroll-stat .l{font-size:0.82rem;color:var(--text-gray)}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-img-box{position:relative}
+.about-shape{width:100%;aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(139,92,246,0.1));border:1px solid rgba(108,99,255,0.2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.geo-art{position:relative;width:80%;aspect-ratio:1}
+.rings-parallax{position:absolute;inset:0}
+/* MODIFIED: ring pulse wrapper — each ring now sits inside a .ring-pulse element that handles the slow expand/fade ripple via its own transform, completely independent from the ring's original spin animation (no property conflict, spin timing/colors unchanged) */
+.ring-pulse{position:absolute;inset:0;animation:ringPulse 4s ease-out infinite}
+.ring-pulse.rp-2{inset:15%;animation-delay:0.7s}
+.ring-pulse.rp-3{inset:30%;animation-delay:1.4s}
+.geo-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(108,99,255,0.3);animation:spin 12s linear infinite}
+.rp-2 .geo-ring{border-color:rgba(139,92,246,0.3);animation-direction:reverse;animation-duration:9s}
+.rp-3 .geo-ring{border-color:rgba(108,99,255,0.5);animation-duration:7s}
+.geo-center{position:absolute;inset:40%;background:linear-gradient(135deg,#6C63FF,#8B5CF6);border-radius:50%;box-shadow:0 0 40px rgba(108,99,255,0.6)}
+/* MODIFIED: new rule for the logo mark used in the About section's abstract branding placeholder (see geo-art) */
+.brand-mark{object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 6px 24px rgba(0,0,0,0.45))}
+/* MODIFIED: premium micro-interaction layers for the center HN logo — floating wrapper, soft breathing glow, 3D tilt/hover wrapper, and a diagonal shine sweep. Logo size, colors, position and layout are unchanged; these only add motion. */
+.logo-glow{position:absolute;inset:8%;margin:auto;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.35) 0%,rgba(108,99,255,0.45) 40%,rgba(108,99,255,0) 72%);filter:blur(14px);z-index:2;pointer-events:none;animation:logoGlowBreathe 3s ease-in-out infinite;transition:box-shadow 0.3s ease}
+.logo-glow.is-hovering{box-shadow:0 0 50px 18px rgba(255,255,255,0.3)}
+.logo-float{position:absolute;inset:0;margin:auto;width:34%;height:34%;z-index:3;animation:logoFloat 4.6s ease-in-out infinite;perspective:600px}
+.logo-tilt{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.logo-tilt .brand-mark{position:absolute;inset:0;margin:0;width:100%;height:100%}
+.logo-shine{position:absolute;inset:0;overflow:hidden;border-radius:6px;pointer-events:none}
+.logo-shine::after{content:'';position:absolute;top:-60%;left:-40%;width:35%;height:220%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,0.6) 50%,transparent 100%);transform:translateX(-260%) rotate(10deg);animation:logoShine 7s ease-in-out infinite}
+@keyframes ringPulse{0%{transform:scale(1);opacity:0.9}70%{transform:scale(1.045);opacity:0.3}100%{transform:scale(1.045);opacity:0}}
+@keyframes logoGlowBreathe{0%,100%{opacity:0.55;transform:scale(0.94)}50%{opacity:0.95;transform:scale(1.08)}}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes logoShine{0%,84%{transform:translateX(-260%) rotate(10deg)}92%{transform:translateX(260%) rotate(10deg)}100%{transform:translateX(260%) rotate(10deg)}}
+@media (prefers-reduced-motion: reduce){
+  .logo-float,.ring-pulse,.geo-center,.logo-glow,.logo-shine::after,.geo-ring{animation:none!important}
+  .logo-tilt{transition:none!important}
+}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* MODIFIED: "Trusted By" partner logo showcase arranged around the existing geo-ring/geo-center glow. Rings, glow, container size and border are unchanged. */
+.partner-orbit{position:absolute;inset:0;z-index:2}
+.partner-item{position:absolute;transform:translate(-50%,-50%)}
+.partner-logo{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.02em;color:#FFFFFF;text-align:center;line-height:1;transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease,background 0.35s ease;animation:partnerFloat 6.5s ease-in-out infinite;cursor:default}
+.partner-logo:hover{animation-play-state:paused;transform:scale(1.16);box-shadow:0 0 24px rgba(108,99,255,0.55);border-color:rgba(108,99,255,0.55);background:rgba(108,99,255,0.12)}
+.partner-item:nth-child(1) .partner-logo{animation-delay:0s}
+.partner-item:nth-child(2) .partner-logo{animation-delay:0.9s}
+.partner-item:nth-child(3) .partner-logo{animation-delay:1.8s}
+.partner-item:nth-child(4) .partner-logo{animation-delay:0.4s}
+.partner-item:nth-child(5) .partner-logo{animation-delay:1.3s}
+.partner-item:nth-child(6) .partner-logo{animation-delay:2.2s}
+.partner-item:nth-child(7) .partner-logo{animation-delay:0.7s}
+.partner-item:nth-child(8) .partner-logo{animation-delay:1.6s}
+@keyframes partnerFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media (max-width:640px){.partner-logo{width:40px;height:40px;font-size:0.5rem}}
+.about-badge{position:absolute;background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);backdrop-filter:blur(12px);border-radius:12px;padding:0.75rem 1rem;font-size:0.82rem;font-weight:600;color:var(--white)}
+.badge-tl{top:-20px;left:-20px}
+.badge-br{bottom:-20px;right:-20px}
+.about-badges{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.about-feat{display:flex;align-items:flex-start;gap:0.75rem;padding:1rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px}
+.about-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,rgba(108,99,255,0.3),rgba(139,92,246,0.2));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.about-feat-title{font-weight:600;font-size:0.88rem;color:var(--white);margin-bottom:0.15rem}
+.about-feat-sub{font-size:0.78rem;color:var(--text-gray)}
+
+/* ── SERVICES ── */
+#services-wrap{background:linear-gradient(180deg,var(--bg-dark) 0%,#0a1020 50%,var(--bg-dark) 100%)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+.service-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);border-radius:20px;padding:2rem;transition:all 0.4s;position:relative;overflow:hidden;cursor:default}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,99,255,0.08),transparent);opacity:0;transition:opacity 0.4s;border-radius:20px}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(108,99,255,0.4);box-shadow:0 20px 60px rgba(108,99,255,0.2)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(139,92,246,0.15));display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.3rem;transition:transform 0.3s}
+.service-card:hover .service-icon{transform:scale(1.1)}
+.service-title{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.service-desc{font-size:0.87rem;color:var(--text-gray);margin-bottom:1.25rem;line-height:1.7}
+.service-list{display:flex;flex-direction:column;gap:0.4rem}
+.service-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--text-light)}
+.service-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.service-arrow{position:absolute;top:1.5rem;right:1.5rem;width:32px;height:32px;border-radius:50%;background:rgba(108,99,255,0.1);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--primary);transition:all 0.3s}
+.service-card:hover .service-arrow{background:var(--primary);color:#fff;transform:rotate(45deg)}
+
+/* ── PORTFOLIO ── */
+.portfolio-filters{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.filter-btn{background:var(--glass);border:1px solid var(--glass-border);color:var(--text-gray);padding:0.45rem 1.1rem;border-radius:50px;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.25s}
+.filter-btn:hover,.filter-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.portfolio-item{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--bg-card)}
+.port-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 0.5s}
+.portfolio-item:hover .port-visual{transform:scale(1.05)}
+.port-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,0.95) 0%,rgba(108,99,255,0.3) 100%);opacity:0;transition:opacity 0.35s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+.portfolio-item:hover .port-overlay{opacity:1}
+.port-title{font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:0.25rem;transform:translateY(10px);transition:transform 0.35s}
+.port-cat{font-size:0.75rem;color:var(--primary);transform:translateY(10px);transition:transform 0.35s 0.05s}
+.portfolio-item:hover .port-title,.portfolio-item:hover .port-cat{transform:translateY(0)}
+
+/* ── WHY CHOOSE ── */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem}
+.why-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;transition:all 0.35s;position:relative;overflow:hidden}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6C63FF,#8B5CF6);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.why-card:hover{transform:translateY(-5px);border-color:rgba(108,99,255,0.35);box-shadow:0 16px 50px rgba(108,99,255,0.15)}
+.why-card:hover::after{transform:scaleX(1)}
+.why-num{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:700;background:linear-gradient(135deg,rgba(108,99,255,0.3),rgba(139,92,246,0.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:1rem}
+.why-title{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.why-sub{font-size:0.87rem;color:var(--text-gray);line-height:1.7}
+
+/* ── PROCESS ── */
+#process-wrap{background:linear-gradient(180deg,var(--bg-dark),#0a1020,var(--bg-dark))}
+.process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:4rem}
+.process-timeline::before{content:'';position:absolute;top:40px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,#6C63FF,#8B5CF6)}
+.process-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 1rem}
+.step-num{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#6C63FF,#8B5CF6);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.5rem;position:relative;z-index:1;box-shadow:0 0 30px rgba(108,99,255,0.5);flex-shrink:0}
+.step-title{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.step-desc{font-size:0.83rem;color:var(--text-gray);line-height:1.7}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.testi-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:20px;padding:2rem;transition:all 0.35s}
+.testi-card:hover{transform:translateY(-4px);border-color:rgba(108,99,255,0.3);box-shadow:0 16px 50px rgba(108,99,255,0.12)}
+.stars{color:#F59E0B;font-size:1rem;margin-bottom:1rem;letter-spacing:2px}
+.testi-text{font-size:0.92rem;color:var(--text-light);line-height:1.8;margin-bottom:1.5rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:0.75rem}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6C63FF,#8B5CF6);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0}
+.testi-name{font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;color:var(--white)}
+.testi-co{font-size:0.78rem;color:var(--primary)}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info-list{display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
+.contact-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;transition:all 0.3s}
+.contact-item:hover{border-color:rgba(108,99,255,0.35);background:rgba(108,99,255,0.06)}
+.contact-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(108,99,255,0.25),rgba(139,92,246,0.15));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-label{font-size:0.75rem;color:var(--text-gray);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem}
+.contact-val{font-size:0.92rem;font-weight:500;color:var(--white)}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-group{display:flex;flex-direction:column;gap:0.5rem}
+.form-group label{font-size:0.83rem;font-weight:500;color:var(--text-light);letter-spacing:0.02em}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.75rem 1rem;font-size:0.9rem;color:var(--white);font-family:'Inter',sans-serif;transition:all 0.3s;outline:none;width:100%}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-gray)}
+.form-group select option{background:#1E293B;color:var(--white)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);background:rgba(108,99,255,0.08);box-shadow:0 0 0 3px rgba(108,99,255,0.15)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-submit{background:linear-gradient(135deg,#6C63FF,#8B5CF6);color:#fff;padding:0.85rem 2rem;border-radius:50px;font-size:0.95rem;font-weight:600;width:100%;transition:all 0.3s;letter-spacing:0.02em;margin-top:0.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(108,99,255,0.5)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--glass-border);padding:4rem 1.5rem 2rem;background:rgba(0,0,0,0.3)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;color:#FFFFFF;margin-bottom:0.75rem}
+.footer-desc{font-size:0.87rem;color:var(--text-gray);line-height:1.8;max-width:300px;margin-bottom:1.5rem}
+.social-links{display:flex;gap:0.75rem;flex-wrap:wrap}
+.social-link{width:38px;height:38px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:var(--text-gray);transition:all 0.3s;text-decoration:none}
+.social-link svg{width:17px;height:17px;fill:#fff}
+.social-link:hover{background:var(--primary);border-color:var(--primary);color:#fff;transform:translateY(-2px)}
+.footer-col-title{font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.06em}
+.footer-links{display:flex;flex-direction:column;gap:0.6rem;list-style:none}
+.footer-links a{font-size:0.87rem;color:var(--text-gray);transition:color 0.2s}
+.footer-links a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--glass-border);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:0.82rem;color:var(--text-gray)}
+.footer-made{font-size:0.82rem;color:var(--text-gray)}
+.footer-made span{color:var(--primary)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-visual{display:none}
+  .hero-sub{max-width:100%}
+  .hero-btns{justify-content:center}
+  .about-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .process-timeline{grid-template-columns:1fr 1fr;row-gap:2rem}
+  .process-timeline::before{display:none}
+  .portfolio-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .nav-links,.btn-nav{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  .portfolio-grid{grid-template-columns:1fr}
+  .process-timeline{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .hero-scroll{gap:1.5rem}
+  .about-badges{grid-template-columns:1fr}
+  .ceo-name-overlay{left:12px;bottom:12px;padding:12px 14px;max-width:calc(100% - 24px)}
+  .ceo-name-overlay .ceo-name{font-size:1rem}
+  .ceo-name-overlay .ceo-role{font-size:0.75rem}
+}
+</style>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+
+<style>
+.service-icon,
+.contact-icon,
+.about-icon{
+    color:#FFFFFF !important;
+}
+.service-icon i,
+.contact-icon i,
+.about-icon i{
+    color:#FFFFFF !important;
+}
+</style>
+
+
+<style>
+.whatsapp-float{
+position:fixed !important;
+bottom:25px !important;
+right:25px !important;
+width:65px !important;
+height:65px !important;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+border-radius:50% !important;
+background:linear-gradient(135deg,#25D366,#128C7E) !important;
+color:#fff !important;
+font-size:30px !important;
+text-decoration:none !important;
+z-index:9999 !important;
+box-shadow:0 12px 35px rgba(37,211,102,.45) !important;
+animation:waPulse 2s infinite;
+transition:all .3s ease;
+}
+.whatsapp-float:hover{
+transform:translateY(-4px) scale(1.08);
+box-shadow:0 18px 45px rgba(37,211,102,.6) !important;
+}
+@keyframes waPulse{
+0%{box-shadow:0 0 0 0 rgba(37,211,102,.6);}
+70%{box-shadow:0 0 0 18px rgba(37,211,102,0);}
+100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+}
+</style>
+
+
+<style>
+.whatsapp-float{
+background:linear-gradient(135deg,#6C63FF,#8B5CF6) !important;
+box-shadow:0 12px 35px rgba(108,99,255,.45) !important;
+}
+.whatsapp-float:hover{
+box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
+}
+@keyframes waPulse{
+0%{box-shadow:0 0 0 0 rgba(108,99,255,.55);}
+70%{box-shadow:0 0 0 18px rgba(108,99,255,0);}
+100%{box-shadow:0 0 0 0 rgba(108,99,255,0);}
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo"><img src="assets/images/logo.png" alt="HN Creative Agency"></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-nav">Get Started</a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="#hero" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#process" onclick="toggleMenu()">Process</a>
+  <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn-nav" onclick="toggleMenu()">Get Started</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span>Full-Service Digital Agency</div>
+      <h1 class="hero-headline">
+        <span class="gradient-text">Design</span><br>
+        <span class="gradient-text">Market</span><br>
+        <span>Grow</span>
+      </h1>
+      <p class="hero-sub">HN Creative Agency helps businesses grow through creative design, powerful branding, strategic marketing, social media management, and high-performance websites.</p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-primary">View Portfolio</a>
+        <a href="#contact" class="btn-secondary">Contact Us</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-stat"><div class="n">150+</div><div class="l">Projects Completed</div></div>
+        <div class="scroll-stat"><div class="n">80+</div><div class="l">Happy Clients</div></div>
+        <div class="scroll-stat"><div class="n">5+</div><div class="l">Years Experience</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="glass-card hc1">
+          <div class="card-label">Monthly Growth</div>
+          <div class="card-val">+48.2%</div>
+          <div class="card-sub">↑ 12.4% vs last month</div>
+          <div class="mini-bars">
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar active" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="glass-card hc2">
+          <div class="card-label">Client Satisfaction</div>
+          <div class="card-val">98.5%</div>
+          <div class="stats-row">
+            <div class="stat-chip"><div class="n">150+</div><div class="l">Projects</div></div>
+            <div class="stat-chip"><div class="n">5★</div><div class="l">Rating</div></div>
+          </div>
+        </div>
+        <div class="glass-card hc3">
+          <div class="card-label">Active Projects</div>
+          <div class="card-val" style="font-size:1.2rem">12 Live</div>
+          <div class="card-sub">On-time delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding:6rem 0">
+  <div class="section">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-img-box">
+          <div class="about-shape">
+            <!-- MODIFIED: removed person/CEO photo from this decorative visual. Replaced with an abstract premium branding placeholder built from the existing (previously unused) .geo-art/.geo-ring/.geo-center tokens already defined in the stylesheet — concentric rotating rings + soft gradient glow — with the company logo mark centered on top. .about-shape container size, border, background gradient and rounded corners are unchanged; the floating badges below are untouched. -->
+            <div class="geo-art" id="geoArt">
+              <div class="rings-parallax" id="ringsParallax">
+                <div class="ring-pulse rp-1"><div class="geo-ring"></div></div>
+                <div class="ring-pulse rp-2"><div class="geo-ring"></div></div>
+                <div class="ring-pulse rp-3"><div class="geo-ring"></div></div>
+              </div>
+              <div class="geo-center"></div>
+              <div class="logo-glow" id="logoGlow"></div>
+              <div class="logo-float" id="logoFloat">
+                <div class="logo-tilt" id="logoTilt">
+                  <img src="assets/images/favicon.png" alt="HN Creative Agency" class="brand-mark">
+                  <div class="logo-shine"></div>
+                </div>
+              </div>
+              <!-- MODIFIED: "Trusted By" partner showcase. Clean typographic monograms are used instead of reproducing third-party trademarked logo artwork, styled as minimal white/monochrome badges consistent with the dark premium theme. Swap in licensed official logo files here if available. -->
+              <div class="partner-orbit" id="partnerOrbit">
+                <div class="partner-item" style="left:50%;top:0%" title="Google"><div class="partner-logo">G</div></div>
+                <div class="partner-item" style="left:85.4%;top:14.6%" title="Meta"><div class="partner-logo">Meta</div></div>
+                <div class="partner-item" style="left:100%;top:50%" title="Shopify"><div class="partner-logo">Shpfy</div></div>
+                <div class="partner-item" style="left:85.4%;top:85.4%" title="Microsoft"><div class="partner-logo">MS</div></div>
+                <div class="partner-item" style="left:50%;top:100%" title="Amazon Web Services"><div class="partner-logo">AWS</div></div>
+                <div class="partner-item" style="left:14.6%;top:85.4%" title="GitHub"><div class="partner-logo">GitHub</div></div>
+                <div class="partner-item" style="left:0%;top:50%" title="Cloudflare"><div class="partner-logo">CF</div></div>
+                <div class="partner-item" style="left:14.6%;top:14.6%" title="WordPress"><div class="partner-logo">WP</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-badge badge-tl">🏆 Award-Winning Agency</div>
+          <div class="about-badge badge-br">🌍 Serving Worldwide</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">We Build Brands That<br>Leave a Mark</h2>
+        <p class="section-sub">HN Creative Agency is a full-service digital agency helping brands establish a strong online presence through strategic design, development, branding, and marketing solutions.</p>
+        <p style="color:var(--text-gray);font-size:0.92rem;line-height:1.8;margin-top:1rem;margin-bottom:2rem">We combine creativity with strategy to deliver impactful digital experiences that drive business growth. Our team of experts brings together design thinking, technical mastery, and marketing intelligence.</p>
+        <div class="about-badges">
+          <div class="about-feat">
+            <!-- MODIFIED: emoji replaced with white SVG icon (target = Mission). Purple .about-icon background, size 36x36 and padding are unchanged. -->
+            <div class="about-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#FFFFFF" stroke-width="1.8"/><circle cx="12" cy="12" r="5" stroke="#FFFFFF" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="#FFFFFF"/></svg></div>
+            <div><div class="about-feat-title">Our Mission</div><div class="about-feat-sub">Empower brands with impactful design and smart strategy</div></div>
+          </div>
+          <div class="about-feat">
+            <!-- MODIFIED: emoji replaced with white SVG icon (eye = Vision). Purple .about-icon background, size 36x36 and padding are unchanged. -->
+            <div class="about-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="#FFFFFF" stroke-width="1.8"/></svg></div>
+            <div><div class="about-feat-title">Our Vision</div><div class="about-feat-sub">Become the region's most trusted creative agency</div></div>
+          </div>
+          <div class="about-feat">
+            <!-- MODIFIED: emoji replaced with white SVG icon (lightbulb = Experience/Years). Purple .about-icon background, size 36x36 and padding are unchanged. -->
+            <div class="about-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6v.5h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="about-feat-title">5+ Years</div><div class="about-feat-sub">Deep experience across industries and markets</div></div>
+          </div>
+          <div class="about-feat">
+            <!-- MODIFIED: emoji replaced with white SVG icon (badge-check = Projects delivered). Purple .about-icon background, size 36x36 and padding are unchanged. -->
+            <div class="about-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 14.5 4.5 18 4 18.5 7.5 21 9.5 19.5 12.5 21 15.5 18 17.5 17 21 13.5 19.5 12 22 10.5 19.5 7 21 6 17.5 3 15.5 4.5 12.5 3 9.5 5.5 7.5 6 4 9.5 4.5 12 2Z" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 12.5l2 2 4-4.5" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="about-feat-title">150+ Projects</div><div class="about-feat-sub">Delivered on time, with measurable results</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div id="services-wrap">
+<section id="services" class="section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Our Services</div>
+    <h2 class="section-title">Everything Your Brand Needs</h2>
+    <p class="section-sub" style="margin:0 auto">From initial concept to digital launch — we cover every dimension of your brand's growth.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.21 1.79 3.5 4 3.5h1a2 2 0 0 1 2 2v.5c0 1.66 1.34 3 3 3 4.42 0 8-4.03 8-9 0-4.42-3.98-8-9-8Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.2" fill="#FFFFFF"/><circle cx="11" cy="7" r="1.2" fill="#FFFFFF"/><circle cx="15.5" cy="7.5" r="1.2" fill="#FFFFFF"/><circle cx="17.5" cy="11.5" r="1.2" fill="#FFFFFF"/></svg></div>
+      <div class="service-title">Graphic Design</div>
+      <div class="service-desc">Visual assets that communicate your brand's identity across every touchpoint.</div>
+      <div class="service-list">
+        <div class="service-item">Social Media Design</div>
+        <div class="service-item">Marketing Materials</div>
+        <div class="service-item">Print Design</div>
+        <div class="service-item">Presentation Design</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 14 9 21 12 14 15 12 22 10 15 3 12 10 9 12 2Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="service-title">Branding</div>
+      <div class="service-desc">A cohesive brand identity that sets you apart and builds lasting recognition.</div>
+      <div class="service-list">
+        <div class="service-item">Logo Design</div>
+        <div class="service-item">Brand Identity</div>
+        <div class="service-item">Brand Guidelines</div>
+        <div class="service-item">Brand Positioning</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="6" width="13" height="12" rx="2" stroke="#FFFFFF" stroke-width="1.6"/><path d="M15.5 10.5 21 7.5v9l-5.5-3Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      <div class="service-title">Video Editing</div>
+      <div class="service-desc">Scroll-stopping video content crafted for maximum engagement across all platforms.</div>
+      <div class="service-list">
+        <div class="service-item">Reels & Shorts</div>
+        <div class="service-item">Commercial Videos</div>
+        <div class="service-item">Promotional Content</div>
+        <div class="service-item">Motion Graphics</div>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 8l-3 4 3 4M15 8l3 4-3 4" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="service-title">Website Design & Dev</div>
+      <div class="service-desc">High-performance websites that look stunning and convert visitors into clients.</div>
+      <div class="service-list">
+        <div class="service-item">Business Websites</div>
+        <div class="service-item">Portfolio Websites</div>
+        <div class="service-item">Landing Pages</div>
+        <div class="service-item">Responsive Design</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="5" r="2.2" stroke="#FFFFFF" stroke-width="1.5"/><circle cx="6" cy="12" r="2.2" stroke="#FFFFFF" stroke-width="1.5"/><circle cx="18" cy="19" r="2.2" stroke="#FFFFFF" stroke-width="1.5"/><path d="M8 10.8 16 6.2M8 13.2l8 4.6" stroke="#FFFFFF" stroke-width="1.5"/></svg></div>
+      <div class="service-title">Social Media Management</div>
+      <div class="service-desc">End-to-end social presence management that builds community and drives growth.</div>
+      <div class="service-list">
+        <div class="service-item">Content Planning</div>
+        <div class="service-item">Scheduling</div>
+        <div class="service-item">Community Management</div>
+        <div class="service-item">Performance Monitoring</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-arrow">→</div>
+      <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17 9 11 13 15 21 7" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h6v6" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="service-title">Digital Marketing</div>
+      <div class="service-desc">Data-driven campaigns that generate leads, conversions, and measurable ROI.</div>
+      <div class="service-list">
+        <div class="service-item">Meta & Google Ads</div>
+        <div class="service-item">Lead Generation</div>
+        <div class="service-item">Conversion Optimization</div>
+        <div class="service-item">Analytics & Reporting</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Our Work</div>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-sub" style="margin:0 auto">A showcase of our most impactful work across design, branding, and digital marketing.</p>
+  </div>
+  <div class="portfolio-filters reveal" style="justify-content:center;margin-top:2rem">
+    <button class="filter-btn active" onclick="filterPort(this,'all')">All</button>
+    <button class="filter-btn" onclick="filterPort(this,'branding')">Branding</button>
+    <button class="filter-btn" onclick="filterPort(this,'web')">Web Design</button>
+    <button class="filter-btn" onclick="filterPort(this,'social')">Social Media</button>
+    <button class="filter-btn" onclick="filterPort(this,'graphic')">Graphic Design</button>
+  </div>
+  <div class="portfolio-grid" id="portGrid">
+    <div class="portfolio-item reveal" data-cat="branding">
+      <div class="port-visual" style="background:linear-gradient(135deg,#1a1040,#2d1a70)">
+        <img src="assets/images/project-1.jpg" alt="Nexus Brand Identity project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Nexus Brand Identity</div>
+        <div class="port-cat">Branding</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-1" data-cat="web">
+      <div class="port-visual" style="background:linear-gradient(135deg,#0a1628,#1a2a4a)">
+        <img src="assets/images/project-2.jpg" alt="Apex Corporate Website project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Apex Corporate Website</div>
+        <div class="port-cat">Web Design</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-2" data-cat="social">
+      <div class="port-visual" style="background:linear-gradient(135deg,#1a0a28,#3a0a5a)">
+        <img src="assets/images/project-3.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Lumina Social Campaign</div>
+        <div class="port-cat">Social Media</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal" data-cat="graphic">
+      <div class="port-visual" style="background:linear-gradient(135deg,#0f1a28,#0a2040)">
+        <img src="assets/images/project-4.jpg" alt="Vivid Marketing Pack project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Vivid Marketing Pack</div>
+        <div class="port-cat">Graphic Design</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-1" data-cat="branding">
+      <div class="port-visual" style="background:linear-gradient(135deg,#0a1a10,#0a2820)">
+        <img src="assets/images/project-5.jpg" alt="Verde Brand System project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Verde Brand System</div>
+        <div class="port-cat">Branding</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-2" data-cat="web">
+      <div class="port-visual" style="background:linear-gradient(135deg,#1a1020,#280f2d)">
+        <img src="assets/images/project-6.jpg" alt="Pulse Landing Page project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="port-overlay">
+        <div class="port-title">Pulse Landing Page</div>
+        <div class="port-cat">Web Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<div style="background:linear-gradient(180deg,var(--bg-dark),#080f1e,var(--bg-dark));padding:1px 0">
+<section class="section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Why HN Creative</div>
+    <h2 class="section-title">Why Brands Choose Us</h2>
+    <p class="section-sub" style="margin:0 auto">We don't just deliver work — we deliver results that move the needle for your business.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <div class="why-title">Creative Excellence</div>
+      <div class="why-sub">Every project is crafted with a distinct point of view. We bring originality, intention, and craft to each deliverable — not templates.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-num">02</div>
+      <div class="why-title">Fast Delivery</div>
+      <div class="why-sub">We respect your time. Our streamlined process ensures projects are delivered on schedule without compromising on quality.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-num">03</div>
+      <div class="why-title">Results-Driven</div>
+      <div class="why-sub">Everything we build is tied to business outcomes — more leads, stronger brand recall, higher conversions, and measurable growth.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-num">04</div>
+      <div class="why-title">Clear Communication</div>
+      <div class="why-sub">Transparent timelines, honest feedback, and regular updates. You'll always know exactly where your project stands.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PROCESS -->
+<div id="process-wrap">
+<section id="process" class="section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">How We Work</div>
+    <h2 class="section-title">Our Process</h2>
+    <p class="section-sub" style="margin:0 auto">A structured yet flexible workflow that keeps your project on track from idea to launch.</p>
+  </div>
+  <div class="process-timeline">
+    <div class="process-step reveal">
+      <div class="step-num">1</div>
+      <div class="step-title">Discovery</div>
+      <div class="step-desc">We dive deep into your goals, audience, and competitive landscape to fully understand your brand's context and opportunities.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-num">2</div>
+      <div class="step-title">Strategy</div>
+      <div class="step-desc">We map out a clear roadmap — messaging frameworks, visual direction, and campaign architecture tailored to your goals.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-num">3</div>
+      <div class="step-title">Design & Build</div>
+      <div class="step-desc">Our team executes with precision — designing, developing, and refining until every element reflects your brand perfectly.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-num">4</div>
+      <div class="step-title">Launch & Grow</div>
+      <div class="step-desc">We launch your project and continue supporting growth through ongoing optimization, analytics, and strategic iterations.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-sub" style="margin:0 auto">Real results, real feedback from businesses we've helped grow.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"HN Creative Agency transformed our brand completely. The new identity increased our inquiry rate by over 60% within three months. Their process was seamless and professional from start to finish."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div><div class="testi-name">Ahmed Khan</div><div class="testi-co">CEO, Apex Solutions</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Our website went from outdated to world-class. The team's attention to detail and responsiveness made this the smoothest project I've ever managed. Highly recommend for any serious business."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SF</div>
+        <div><div class="testi-name">Sara Farooq</div><div class="testi-co">Founder, Lumina Studio</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"The social media strategy they built for us generated 3x more leads in the first month. HN Creative doesn't just do beautiful work — they understand business and what actually drives growth."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MR</div>
+        <div><div class="testi-name">Muhammad Raza</div><div class="testi-co">Director, GrowthPak</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CEO SECTION -->
+<section id="ceo" class="section">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-tag">Leadership</div>
+    <h2 class="section-title">Meet Our Founder & CEO</h2>
+  </div>
+  <div style="max-width:900px;margin:auto;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;">
+    <div class="ceo-img-wrap reveal">
+      <img src="assets/images/image.png" alt="Haseeb Noor" class="ceo-img">
+      <div class="ceo-name-overlay reveal reveal-delay-1">
+        <div class="ceo-name">Haseeb Noor</div>
+        <div class="ceo-role">Founder & CEO</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:2rem;margin-bottom:10px;">Haseeb Noor</h3>
+      <p style="color:#8B5CF6;font-weight:600;margin-bottom:15px;">Founder & CEO</p>
+      <p style="color:#CBD5E1;line-height:1.8;">
+        Creative entrepreneur, graphic designer and digital strategist helping startups and businesses grow through branding, design, websites and marketing.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="pricing">
+<div style="text-align:center;margin-bottom:2rem">
+<div class="section-tag">Pricing</div>
+<h2 class="section-title">Choose Your Package</h2>
+</div>
+<div class="services-grid">
+<div class="service-card"><h3>Starter</h3><p>Perfect for startups</p><h2>$299</h2></div>
+<div class="service-card"><h3>Professional</h3><p>Most Popular</p><h2>$799</h2></div>
+<div class="service-card"><h3>Enterprise</h3><p>Custom Solution</p><h2>Custom</h2></div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<div style="background:linear-gradient(180deg,var(--bg-dark),#060d1a,var(--bg-dark));padding:1px 0">
+<section id="contact" class="section">
+  <div style="text-align:center;margin-bottom:3rem" class="reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's Build Something Great</h2>
+    <p class="section-sub" style="margin:0 auto">Ready to take your brand to the next level? Tell us about your project and we'll get back within 24 hours.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:600;color:var(--white);margin-bottom:0.5rem">Contact Information</h3>
+      <p style="color:var(--text-gray);font-size:0.88rem;margin-bottom:1rem">Reach out directly or fill the form — our team responds within one business day.</p>
+      <div class="contact-info-list">
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="5" width="19" height="14" rx="2" stroke="#FFFFFF" stroke-width="1.6"/><path d="M3 6.5 12 13 21 6.5" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:hncreativeagency0@gmail.com" style="color:inherit">hncreativeagency0@gmail.com</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5c0-.6.4-1 1-1h2.8c.5 0 .9.3 1 .8l.8 3.1c.1.4 0 .9-.3 1.2l-1.4 1.4a13 13 0 0 0 5.6 5.6l1.4-1.4c.3-.3.8-.4 1.2-.3l3.1.8c.5.1.8.5.8 1V19c0 .6-.4 1-1 1h-1C10.2 20 4 13.8 4 6V5Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:+923176250671" style="color:inherit">+92 317 6250671</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5h16a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <div><div class="contact-label">WhatsApp</div><div class="contact-val"><a href="https://wa.me/923176250671" target="_blank" rel="noopener" style="color:inherit">+92 317 6250671</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" stroke="#FFFFFF" stroke-width="1.6"/></svg></div>
+          <div><div class="contact-label">Location</div><div class="contact-val">Thoker Niaz Baig, Lahore, Pakistan 53700</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="e.g. Ahmed Khan"/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="hello@example.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option value="" disabled selected>Select a service</option>
+            <option>Graphic Design</option>
+            <option>Branding & Identity</option>
+            <option>Video Editing</option>
+            <option>Website Design & Development</option>
+            <option>Social Media Management</option>
+            <option>Digital Marketing</option>
+            <option>Full Package</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Tell us about your project, goals, and timeline..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit(this)">Get Started →</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem">
+          <img src="assets/images/favicon.png" alt="HN Creative Agency logo" style="height:32px;width:32px;display:block;filter:brightness(0) invert(1)">
+          <div class="footer-logo" style="margin-bottom:0">HN Creative Agency</div>
+        </div>
+        <div class="footer-desc">A full-service creative agency helping brands grow through design, development, and digital marketing.</div>
+        <div class="tagline" style="font-size:0.82rem;color:var(--primary);font-weight:500;margin-bottom:1.25rem;font-family:'Poppins',sans-serif">Design. Market. Grow.</div>
+        <div class="footer-contact" style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.25rem;font-size:0.85rem;color:var(--text-gray)">
+          <a href="mailto:hncreativeagency0@gmail.com" style="display:flex;align-items:center;gap:0.4rem;color:var(--text-gray);transition:color 0.2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-gray)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><rect x="2.5" y="5" width="19" height="14" rx="2" stroke="#FFFFFF" stroke-width="1.8"/><path d="M3 6.5 12 13 21 6.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> hncreativeagency0@gmail.com</a>
+          <a href="tel:+923176250671" style="display:flex;align-items:center;gap:0.4rem;color:var(--text-gray);transition:color 0.2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-gray)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M4 5c0-.6.4-1 1-1h2.8c.5 0 .9.3 1 .8l.8 3.1c.1.4 0 .9-.3 1.2l-1.4 1.4a13 13 0 0 0 5.6 5.6l1.4-1.4c.3-.3.8-.4 1.2-.3l3.1.8c.5.1.8.5.8 1V19c0 .6-.4 1-1 1h-1C10.2 20 4 13.8 4 6V5Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"/></svg> +92 317 6250671</a>
+        </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61591137246680" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.522 1.492-3.917 3.777-3.917 1.094 0 2.238.196 2.238.196v2.475h-1.26c-1.243 0-1.63.775-1.63 1.57v1.89h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z"/></svg></a>
+          <a href="https://www.linkedin.com/in/hn-creative-agency-492362420/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.065.925 2.065 2.063 0 1.139-.925 2.065-2.065 2.065ZM7.114 20.452H3.558V9h3.556v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg></a>
+          <a href="https://www.instagram.com/hn.creativeagency/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.332 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.196-4.354-2.617-6.78-6.978-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
+          <a href="https://x.com/hncreativeagen" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+          <a href="https://www.pinterest.com/hncreativeagency/_profile/" class="social-link" aria-label="Pinterest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345c-.09.375-.293 1.194-.332 1.361-.053.218-.173.265-.4.16-1.492-.694-2.424-2.875-2.424-4.627 0-3.769 2.738-7.229 7.892-7.229 4.144 0 7.365 2.953 7.365 6.899 0 4.117-2.595 7.431-6.199 7.431-1.211 0-2.35-.629-2.738-1.373 0 0-.599 2.281-.744 2.84-.27 1.037-.998 2.336-1.486 3.129C9.502 23.844 10.732 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0Z"/></svg></a>
+          <a href="https://www.youtube.com/@HNCreativeAgency" class="social-link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.376.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.376-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Graphic Design</a></li>
+          <li><a href="#services">Branding</a></li>
+          <li><a href="#services">Video Editing</a></li>
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 HN Creative Agency. All Rights Reserved.</div>
+      <div class="footer-made">Built with <span>♥</span> for ambitious brands</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky Nav
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>50);
+});
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Portfolio filter
+function filterPort(btn,cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-item').forEach(item=>{
+    if(cat==='all'||item.dataset.cat===cat){
+      item.style.display='block';
+      item.style.opacity='0';item.style.transform='scale(0.9)';
+      setTimeout(()=>{item.style.transition='all 0.4s';item.style.opacity='1';item.style.transform='scale(1)'},10);
+    } else {
+      item.style.opacity='0';item.style.transform='scale(0.9)';
+      setTimeout(()=>{item.style.display='none'},400);
+    }
+  });
+}
+
+// Form submit
+function handleSubmit(btn){
+  const orig=btn.textContent;
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent='✓ Message Sent!';
+    btn.style.background='linear-gradient(135deg,#059669,#10b981)';
+    setTimeout(()=>{
+      btn.textContent=orig;
+      btn.style.background='';
+      btn.disabled=false;
+    },3000);
+  },1200);
+}
+
+// Smooth scroll for mobile menu links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();window.scrollTo({top:target.offsetTop-80,behavior:'smooth'});}
+  });
+});
+
+// Trigger initial reveal for hero
+setTimeout(()=>{
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+},100);
+
+// MODIFIED: premium micro-interactions for the center HN logo (About section) —
+// mouse-driven 3D tilt (max ~4deg) + subtle orbit-ring parallax + hover scale/rotate/glow boost.
+// Pure vanilla JS, transform-only, single rAF loop, and fully skipped when the user prefers reduced motion.
+(function(){
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const geoArt = document.getElementById('geoArt');
+  const tilt = document.getElementById('logoTilt');
+  const orbit = document.getElementById('partnerOrbit');
+  const rings = document.getElementById('ringsParallax');
+  const glow = document.getElementById('logoGlow');
+  if(!geoArt || !tilt || prefersReduced) return;
+
+  let targetTiltX=0, targetTiltY=0, curTiltX=0, curTiltY=0;
+  let targetOrbX=0, targetOrbY=0, curOrbX=0, curOrbY=0;
+  let hovering=false;
+
+  geoArt.addEventListener('mousemove',function(e){
+    const r=geoArt.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width-0.5;
+    const py=(e.clientY-r.top)/r.height-0.5;
+    targetTiltX = Math.max(-4,Math.min(4, py*-8));
+    targetTiltY = Math.max(-4,Math.min(4, px*8));
+    targetOrbX = px*8;
+    targetOrbY = py*8;
+  });
+  geoArt.addEventListener('mouseleave',function(){
+    targetTiltX=0; targetTiltY=0; targetOrbX=0; targetOrbY=0;
+  });
+  tilt.addEventListener('mouseenter',function(){ hovering=true; if(glow) glow.classList.add('is-hovering'); });
+  tilt.addEventListener('mouseleave',function(){ hovering=false; if(glow) glow.classList.remove('is-hovering'); });
+
+  function loop(){
+    curTiltX += (targetTiltX-curTiltX)*0.08;
+    curTiltY += (targetTiltY-curTiltY)*0.08;
+    curOrbX += (targetOrbX-curOrbX)*0.08;
+    curOrbY += (targetOrbY-curOrbY)*0.08;
+    const hoverPart = hovering ? ' scale(1.08) rotate(4deg)' : '';
+    tilt.style.transform = 'rotateX('+curTiltX.toFixed(2)+'deg) rotateY('+curTiltY.toFixed(2)+'deg)'+hoverPart;
+    if(rings) rings.style.transform = 'translate('+curOrbX.toFixed(2)+'px,'+curOrbY.toFixed(2)+'px)';
+    if(orbit) orbit.style.transform = 'translate('+(curOrbX*0.5).toFixed(2)+'px,'+(curOrbY*0.5).toFixed(2)+'px)';
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
+<style>
+.whatsapp-float{
+position:fixed;bottom:25px;right:25px;width:60px;height:60px;
+display:flex;align-items:center;justify-content:center;
+border-radius:50%;font-size:28px;text-decoration:none;
+background:#25D366;color:white;z-index:9999;
+box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+</style>
+<!-- MODIFIED: icon swapped from generic 💬 emoji to an official WhatsApp-style glyph (white SVG). Circular button, position, size, shadow, gradient colors and hover/pulse animation are unchanged. -->
+<a href="https://wa.me/923176250671" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-2c1.9 1 4.1 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3z" stroke="#FFFFFF" stroke-width="1.6"/>
+    <path d="M12.4 10.5c-.3-.6-.5-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5 2.9 1.1 3.4.9 4 .8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.6-1.7-.9-2.4z" fill="#FFFFFF"/>
+  </svg>
+</a>
+
+</body>
+</html>
