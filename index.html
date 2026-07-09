@@ -284,7 +284,27 @@ footer{border-top:1px solid var(--glass-border);padding:4rem 1.5rem 2rem;backgro
   .nav-links,.btn-nav{display:none}
   .hamburger{display:flex}
 }
-@media(max-width:600px){
+@media(max-width:600px){.ceo-img-wrap{
+    display:flex;
+    justify-content:center;
+}
+
+.ceo-img{
+    width:220px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto 25px;
+}
+
+.ceo-name-overlay{
+    position:relative;
+    left:auto;
+    bottom:auto;
+    width:100%;
+    margin-top:15px;
+    text-align:center;
+}
   .portfolio-grid{grid-template-columns:1fr}
   .process-timeline{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
