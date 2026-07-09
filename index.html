@@ -284,7 +284,26 @@ footer{border-top:1px solid var(--glass-border);padding:4rem 1.5rem 2rem;backgro
   .nav-links,.btn-nav{display:none}
   .hamburger{display:flex}
 }
-@media(max-width:600px){.ceo-img-wrap{
+@media(max-width:600px){.ceo-img-wrap{.ceo-section{
+    flex-direction:column !important;
+    text-align:center;
+}
+
+.ceo-img-wrap{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.ceo-img{
+    width:220px;
+    height:auto;
+}
+
+.ceo-content{
+    width:100%;
+    text-align:center;
+}
     display:flex;
     justify-content:center;
 }
@@ -805,9 +824,7 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     <div class="section-tag">Leadership</div>
     <h2 class="section-title">Meet Our Founder & CEO</h2>
   </div>
-  <div style="max-width:900px;margin:auto;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;">
-    <div class="ceo-img-wrap reveal">
-      <img src="image.png" alt="Haseeb Noor" class="ceo-img">
+<div class="ceo-section" style="max-width:900px;margin:auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">      <img src="image.png" alt="Haseeb Noor" class="ceo-img">
       <div class="ceo-name-overlay reveal reveal-delay-1">
         <div class="ceo-name">Haseeb Noor</div>
         <div class="ceo-role">Founder & CEO</div>
