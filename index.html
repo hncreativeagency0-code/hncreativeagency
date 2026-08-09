@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ETS5Y82V0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2ETS5Y82V0');
-</script>
-  <meta charset="UTF-8"/>
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="HN Creative Agency – Design. Market. Grow. A full-service digital agency for branding, web development, and digital marketing."/>
 <title>HN Creative Agency – Design. Market. Grow.</title>
@@ -71,15 +62,8 @@ nav.scrolled{background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bo
 .section-sub{color:var(--text-gray);font-size:1rem;max-width:560px;line-height:1.8}
 
 /* ── HERO ── */
-#hero{
-    min-height:100vh;
-    height:auto;
-    display:flex;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-    padding:5rem 0 120px;
-}.hero-bg{position:absolute;inset:0;z-index:0}
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:5rem}
+.hero-bg{position:absolute;inset:0;z-index:0}
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.25;animation:float 8s ease-in-out infinite}
 .blob1{width:600px;height:600px;background:radial-gradient(circle,#6C63FF,transparent);top:-150px;right:-100px;animation-delay:0s}
 .blob2{width:400px;height:400px;background:radial-gradient(circle,#8B5CF6,transparent);bottom:-100px;left:-50px;animation-delay:3s}
@@ -119,6 +103,20 @@ nav.scrolled{background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bo
 .hero-scroll{display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap}
 .scroll-stat .n{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#6C63FF,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .scroll-stat .l{font-size:0.82rem;color:var(--text-gray)}
+
+/* ── SERVICES MARQUEE ── */
+.services-marquee-section{width:100%;overflow:hidden;padding:2.25rem 0 0;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.marquee-track{display:flex;width:max-content;animation:marqueeScroll 42s linear infinite}
+.services-marquee-section:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;flex-shrink:0}
+.marquee-item{display:inline-flex;align-items:center;gap:0.65rem;padding:0 1.65rem;font-family:'Poppins',sans-serif;font-weight:500;font-size:1.15rem;color:var(--text-light);white-space:nowrap;transition:color 0.3s ease}
+.marquee-item svg{width:20px;height:20px;flex-shrink:0;opacity:0.7;transition:opacity 0.3s ease,transform 0.3s ease}
+.marquee-item:hover{color:var(--primary)}
+.marquee-item:hover svg{opacity:1;transform:scale(1.12)}
+.marquee-sep{color:var(--border);font-size:0.7rem;flex-shrink:0}
+@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+@media(max-width:640px){.marquee-item{padding:0 1.15rem;font-size:1.02rem}.marquee-item svg{width:18px;height:18px}.marquee-track{animation-duration:30s}.services-marquee-section{padding:1.75rem 0 0}}
 
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
@@ -300,46 +298,7 @@ footer{border-top:1px solid var(--glass-border);padding:4rem 1.5rem 2rem;backgro
   .nav-links,.btn-nav{display:none}
   .hamburger{display:flex}
 }
-@media(max-width:600px){.ceo-img-wrap{.ceo-section{
-    flex-direction:column !important;
-    text-align:center;
-}
-
-.ceo-img-wrap{
-    width:100%;
-    display:flex;
-    justify-content:center;
-}
-
-.ceo-img{
-    width:220px;
-    height:auto;
-}
-
-.ceo-content{
-    width:100%;
-    text-align:center;
-}
-    display:flex;
-    justify-content:center;
-}
-
-.ceo-img{
-    width:220px;
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto 25px;
-}
-
-.ceo-name-overlay{
-    position:relative;
-    left:auto;
-    bottom:auto;
-    width:100%;
-    margin-top:15px;
-    text-align:center;
-}
+@media(max-width:600px){
   .portfolio-grid{grid-template-columns:1fr}
   .process-timeline{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
@@ -352,7 +311,7 @@ footer{border-top:1px solid var(--glass-border);padding:4rem 1.5rem 2rem;backgro
 }
 </style>
 
-<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 
 <style>
 .service-icon,
@@ -421,7 +380,7 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo"><img src="logo.png" alt="HN Creative Agency"></div>
+    <div class="nav-logo"><img src="assets/images/logo.png" alt="HN Creative Agency"></div>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -509,6 +468,72 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
   </div>
 </section>
 
+<!-- SERVICES MARQUEE -->
+<section class="services-marquee-section" aria-label="Our services">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.21 1.79 3.5 4 3.5h1a2 2 0 0 1 2 2v.5c0 1.66 1.34 3 3 3 4.42 0 8-4.03 8-9 0-4.42-3.98-8-9-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor"/><circle cx="11" cy="7" r="1" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1" fill="currentColor"/><circle cx="17.5" cy="11.5" r="1" fill="currentColor"/></svg>Graphic Design</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3h9l6 6v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Branding</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 8 4 12l5 4M15 8l5 4-5 4M13.5 5l-3 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Web Development</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3.5" y="4" width="17" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>UI/UX Design</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11v2a2 2 0 0 0 2 2h1l10 4V5L6 9H5a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M18 9.5a3 3 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Digital Marketing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>SEO</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="12" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="6" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11l8-4M8 13l8 4" stroke="currentColor" stroke-width="1.6"/></svg>Social Media Marketing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3.5" width="16" height="17" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Content Creation</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="13" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M16 10l5-3v10l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Video Editing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12a7 7 0 1 1 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 19l-3-3M12 19l3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="12" r="1.3" fill="currentColor"/></svg>Motion Graphics</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>AI Automation</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>E-commerce Solutions</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>App Development</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 18a4.5 4.5 0 0 1-.5-8.98A5.5 5.5 0 0 1 17.2 8.03 4 4 0 0 1 17 16H7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Cloud Solutions</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.21 1.79 3.5 4 3.5h1a2 2 0 0 1 2 2v.5c0 1.66 1.34 3 3 3 4.42 0 8-4.03 8-9 0-4.42-3.98-8-9-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor"/><circle cx="11" cy="7" r="1" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1" fill="currentColor"/><circle cx="17.5" cy="11.5" r="1" fill="currentColor"/></svg>Graphic Design</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3h9l6 6v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Branding</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 8 4 12l5 4M15 8l5 4-5 4M13.5 5l-3 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Web Development</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3.5" y="4" width="17" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>UI/UX Design</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11v2a2 2 0 0 0 2 2h1l10 4V5L6 9H5a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M18 9.5a3 3 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Digital Marketing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>SEO</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="12" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="6" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11l8-4M8 13l8 4" stroke="currentColor" stroke-width="1.6"/></svg>Social Media Marketing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3.5" width="16" height="17" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Content Creation</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="13" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M16 10l5-3v10l-5-3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Video Editing</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12a7 7 0 1 1 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 19l-3-3M12 19l3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="12" r="1.3" fill="currentColor"/></svg>Motion Graphics</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>AI Automation</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>E-commerce Solutions</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>App Development</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 18a4.5 4.5 0 0 1-.5-8.98A5.5 5.5 0 0 1 17.2 8.03 4 4 0 0 1 17 16H7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Cloud Solutions</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about" style="padding:6rem 0">
   <div class="section">
@@ -527,7 +552,7 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
               <div class="logo-glow" id="logoGlow"></div>
               <div class="logo-float" id="logoFloat">
                 <div class="logo-tilt" id="logoTilt">
-                  <img <img src="favicon.png" alt="HN Creative Agency" class="brand-mark">
+                  <img src="assets/images/favicon.png" alt="HN Creative Agency" class="brand-mark">
                   <div class="logo-shine"></div>
                 </div>
               </div>
@@ -682,7 +707,7 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
   <div class="portfolio-grid" id="portGrid">
     <div class="portfolio-item reveal" data-cat="branding">
       <div class="port-visual" style="background:linear-gradient(135deg,#1a1040,#2d1a70)">
-        <img src="project-1.jpg" alt="Nexus Brand Identity project preview" style="width:100%;height:100%;object-fit:cover">
+        <img src="assets/images/project-1.jpg" alt="Nexus Brand Identity project preview" style="width:100%;height:100%;object-fit:cover">
       </div>
       <div class="port-overlay">
         <div class="port-title">Nexus Brand Identity</div>
@@ -691,7 +716,8 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     </div>
     <div class="portfolio-item reveal reveal-delay-1" data-cat="web">
       <div class="port-visual" style="background:linear-gradient(135deg,#0a1628,#1a2a4a)">
-<img src="project-2.jpg" alt="Apex Corporate Website project preview" style="width:100%;height:100%;object-fit:cover">      </div>
+        <img src="assets/images/project-2.jpg" alt="Apex Corporate Website project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
       <div class="port-overlay">
         <div class="port-title">Apex Corporate Website</div>
         <div class="port-cat">Web Design</div>
@@ -699,7 +725,8 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     </div>
     <div class="portfolio-item reveal reveal-delay-2" data-cat="social">
       <div class="port-visual" style="background:linear-gradient(135deg,#1a0a28,#3a0a5a)">
-<img src="project-3.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">      </div>
+        <img src="assets/images/project-3.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
       <div class="port-overlay">
         <div class="port-title">Lumina Social Campaign</div>
         <div class="port-cat">Social Media</div>
@@ -707,7 +734,8 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     </div>
     <div class="portfolio-item reveal" data-cat="graphic">
       <div class="port-visual" style="background:linear-gradient(135deg,#0f1a28,#0a2040)">
-<img src="project-4.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">      </div>
+        <img src="assets/images/project-4.jpg" alt="Vivid Marketing Pack project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
       <div class="port-overlay">
         <div class="port-title">Vivid Marketing Pack</div>
         <div class="port-cat">Graphic Design</div>
@@ -715,7 +743,8 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     </div>
     <div class="portfolio-item reveal reveal-delay-1" data-cat="branding">
       <div class="port-visual" style="background:linear-gradient(135deg,#0a1a10,#0a2820)">
-<img src="project-5.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">      </div>
+        <img src="assets/images/project-5.jpg" alt="Verde Brand System project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
       <div class="port-overlay">
         <div class="port-title">Verde Brand System</div>
         <div class="port-cat">Branding</div>
@@ -723,7 +752,8 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     </div>
     <div class="portfolio-item reveal reveal-delay-2" data-cat="web">
       <div class="port-visual" style="background:linear-gradient(135deg,#1a1020,#280f2d)">
-<img src="project-6.jpg" alt="Lumina Social Campaign project preview" style="width:100%;height:100%;object-fit:cover">      </div>
+        <img src="assets/images/project-6.jpg" alt="Pulse Landing Page project preview" style="width:100%;height:100%;object-fit:cover">
+      </div>
       <div class="port-overlay">
         <div class="port-title">Pulse Landing Page</div>
         <div class="port-cat">Web Design</div>
@@ -840,7 +870,9 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     <div class="section-tag">Leadership</div>
     <h2 class="section-title">Meet Our Founder & CEO</h2>
   </div>
-<div class="ceo-section" style="max-width:900px;margin:auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">      <img src="image.png" alt="Haseeb Noor" class="ceo-img">
+  <div style="max-width:900px;margin:auto;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;">
+    <div class="ceo-img-wrap reveal">
+      <img src="assets/images/image.png" alt="Haseeb Noor" class="ceo-img">
       <div class="ceo-name-overlay reveal reveal-delay-1">
         <div class="ceo-name">Haseeb Noor</div>
         <div class="ceo-role">Founder & CEO</div>
@@ -884,7 +916,7 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
       <div class="contact-info-list">
         <div class="contact-item">
           <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="5" width="19" height="14" rx="2" stroke="#FFFFFF" stroke-width="1.6"/><path d="M3 6.5 12 13 21 6.5" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:hncreativeagencyhr@gmail.com" style="color:inherit">hncreativeagency0@gmail.com</a></div></div>
+          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:hncreativeagency0@gmail.com" style="color:inherit">hncreativeagency0@gmail.com</a></div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5c0-.6.4-1 1-1h2.8c.5 0 .9.3 1 .8l.8 3.1c.1.4 0 .9-.3 1.2l-1.4 1.4a13 13 0 0 0 5.6 5.6l1.4-1.4c.3-.3.8-.4 1.2-.3l3.1.8c.5.1.8.5.8 1V19c0 .6-.4 1-1 1h-1C10.2 20 4 13.8 4 6V5Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
@@ -942,13 +974,13 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
     <div class="footer-top">
       <div>
         <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem">
-          <img <img src="favicon.png" alt="HN Creative Agency logo" style="height:32px;width:32px;display:block;filter:brightness(0) invert(1)">
+          <img src="assets/images/favicon.png" alt="HN Creative Agency logo" style="height:32px;width:32px;display:block;filter:brightness(0) invert(1)">
           <div class="footer-logo" style="margin-bottom:0">HN Creative Agency</div>
         </div>
         <div class="footer-desc">A full-service creative agency helping brands grow through design, development, and digital marketing.</div>
         <div class="tagline" style="font-size:0.82rem;color:var(--primary);font-weight:500;margin-bottom:1.25rem;font-family:'Poppins',sans-serif">Design. Market. Grow.</div>
         <div class="footer-contact" style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.25rem;font-size:0.85rem;color:var(--text-gray)">
-          <a href="mailto:hncreativeagencyhr@gmail.com" style="display:flex;align-items:center;gap:0.4rem;color:var(--text-gray);transition:color 0.2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-gray)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><rect x="2.5" y="5" width="19" height="14" rx="2" stroke="#FFFFFF" stroke-width="1.8"/><path d="M3 6.5 12 13 21 6.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> hncreativeagency0@gmail.com</a>
+          <a href="mailto:hncreativeagency0@gmail.com" style="display:flex;align-items:center;gap:0.4rem;color:var(--text-gray);transition:color 0.2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-gray)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><rect x="2.5" y="5" width="19" height="14" rx="2" stroke="#FFFFFF" stroke-width="1.8"/><path d="M3 6.5 12 13 21 6.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> hncreativeagency0@gmail.com</a>
           <a href="tel:+923176250671" style="display:flex;align-items:center;gap:0.4rem;color:var(--text-gray);transition:color 0.2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-gray)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M4 5c0-.6.4-1 1-1h2.8c.5 0 .9.3 1 .8l.8 3.1c.1.4 0 .9-.3 1.2l-1.4 1.4a13 13 0 0 0 5.6 5.6l1.4-1.4c.3-.3.8-.4 1.2-.3l3.1.8c.5.1.8.5.8 1V19c0 .6-.4 1-1 1h-1C10.2 20 4 13.8 4 6V5Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"/></svg> +92 317 6250671</a>
         </div>
         <div class="social-links">
