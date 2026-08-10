@@ -158,21 +158,215 @@ nav.scrolled{background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bo
   .logo-tilt{transition:none!important}
 }
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-/* MODIFIED: "Trusted By" partner logo showcase arranged around the existing geo-ring/geo-center glow. Rings, glow, container size and border are unchanged. */
+/* ============================================================
+   TRUSTED-BY ORBITAL SYSTEM
+   Structure per logo: .orbit-rotator (spins the full ring, sets
+   each logo's starting angle via --start-angle) > .orbit-radius
+   (fixed at the top edge of the rotator - this is what turns the
+   spin into a circular path) > .counter-rotator (spins the exact
+   opposite direction, cancelling the parent's rotation so the
+   glyph inside always stays upright) > .partner-logo (the badge
+   itself, which only handles float + hover, nothing rotational).
+   Container size/border/rings/glow are untouched.
+   ============================================================ */
 .partner-orbit{position:absolute;inset:0;z-index:2}
-.partner-item{position:absolute;transform:translate(-50%,-50%)}
+
+/* Single dial to retune speed for every logo at once (20-30s range) */
+.partner-orbit{--orbit-duration:26s}
+
+/* Full-size rotating layer - one per logo. Because it is sized to
+   match .geo-art (inset:0, same as the existing rings), the orbit
+   radius is always exactly half of this container - so it already
+   matches the rings exactly and shrinks automatically on tablet/
+   mobile as .about-shape/.geo-art scale down responsively. */
+.orbit-rotator{
+  position:absolute;
+  inset:0;
+  transform-origin:50% 50%;
+  animation:orbitSpin var(--orbit-duration) linear infinite;
+  will-change:transform;
+}
+/* Spins one full turn starting from this logo's own angle, forever - GPU-accelerated transform only */
+@keyframes orbitSpin{
+  from{transform:rotate(var(--start-angle))}
+  to{transform:rotate(calc(var(--start-angle) + 360deg))}
+}
+
+/* Anchors the logo to the top edge of its rotator - as the rotator
+   spins underneath it, this point sweeps a perfect circle */
+.orbit-radius{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Spins the opposite direction at the same speed/angle so the
+   rotation applied by .orbit-rotator is fully cancelled out -
+   result: the logo orbits, but the glyph itself never tips over */
+.counter-rotator{
+  animation:counterSpin var(--orbit-duration) linear infinite;
+  will-change:transform;
+}
+@keyframes counterSpin{
+  from{transform:rotate(calc(-1 * var(--start-angle)))}
+  to{transform:rotate(calc(-1 * var(--start-angle) - 360deg))}
+}
+
+/* The visible badge: independent gentle float + hover styling only (no rotation logic here) */
 .partner-logo{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.02em;color:#FFFFFF;text-align:center;line-height:1;transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease,background 0.35s ease;animation:partnerFloat 6.5s ease-in-out infinite;cursor:default}
-.partner-logo:hover{animation-play-state:paused;transform:scale(1.16);box-shadow:0 0 24px rgba(108,99,255,0.55);border-color:rgba(108,99,255,0.55);background:rgba(108,99,255,0.12)}
-.partner-item:nth-child(1) .partner-logo{animation-delay:0s}
-.partner-item:nth-child(2) .partner-logo{animation-delay:0.9s}
-.partner-item:nth-child(3) .partner-logo{animation-delay:1.8s}
-.partner-item:nth-child(4) .partner-logo{animation-delay:0.4s}
-.partner-item:nth-child(5) .partner-logo{animation-delay:1.3s}
-.partner-item:nth-child(6) .partner-logo{animation-delay:2.2s}
-.partner-item:nth-child(7) .partner-logo{animation-delay:0.7s}
-.partner-item:nth-child(8) .partner-logo{animation-delay:1.6s}
-@keyframes partnerFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+/* Subtle continuous float, independent of the orbit motion */
+@keyframes partnerFloat{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+
+/* Hover: scale + soft purple glow, and pause ONLY this logo's own
+   orbit/counter-orbit/float - its siblings keep orbiting normally.
+   :has() lets the ancestor rotators react to the child's hover with
+   no JS; a small JS fallback (see <script> below) covers browsers
+   without :has() support. */
+.orbit-rotator:has(.partner-logo:hover),
+.orbit-rotator.is-paused{animation-play-state:paused}
+.counter-rotator:has(.partner-logo:hover),
+.counter-rotator.is-paused{animation-play-state:paused}
+.partner-logo:hover{
+  animation-play-state:paused;
+  transform:translateY(0) scale(1.1);
+  box-shadow:0 0 24px rgba(108,99,255,0.55);
+  border-color:rgba(108,99,255,0.55);
+  background:rgba(108,99,255,0.12);
+}
+
 @media (max-width:640px){.partner-logo{width:40px;height:40px;font-size:0.5rem}}
+
+/* Respect reduced-motion preference: freeze the whole orbital system */
+@media (prefers-reduced-motion: reduce){
+  .orbit-rotator,.counter-rotator,.partner-logo{animation:none!important}
+}
+
+/* ============================================================
+   CLIENTS ACROSS INDUSTRIES — 3-ROW ANIMATED LOGO SHOWCASE
+   ("Trusted by Global Brands" section)
+
+   Structure per logo, two nested layers on purpose:
+     .logo-slot  -> absolutely positioned, GPU-accelerated
+                    translateX() loop only (never touched by hover).
+     .logo-card  -> the visible glass badge inside the slot; only
+                    handles the hover scale/glow. Keeping these two
+                    transforms on separate elements means pausing +
+                    hovering a card never fights over the same
+                    `transform` property, so there is no jump/snap
+                    when a card is paused mid-flight.
+
+   Row 1 & Row 3 animate with .logo-row (scroll left).
+   Row 2 animates with .logo-row-right (scroll right).
+   Every card in a row shares one animation + duration, staggered
+   with a negative animation-delay so they read as one continuous,
+   evenly-spaced belt instead of a single block moving together -
+   this is also what makes the loop seamless without ever having to
+   duplicate the logo markup.
+   ============================================================ */
+
+/* Tunable sizing tokens - adjust here to restyle every logo card at once */
+.clients-rows{--logo-w:160px;--logo-h:84px;--logo-gap:1.1rem}
+@media (max-width:900px){.clients-rows{--logo-w:130px;--logo-h:72px;--logo-gap:0.9rem}}
+@media (max-width:640px){.clients-rows{--logo-w:104px;--logo-h:60px;--logo-gap:0.7rem}}
+
+/* Outer rows wrapper: clips overflow + applies the left/right fade mask
+   so logos smoothly appear/disappear at the edges instead of hard-cutting */
+.clients-rows{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  margin-top:3rem;
+  display:flex;
+  flex-direction:column;
+  gap:var(--logo-gap);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+}
+
+/* One row = one horizontal lane. Height is exactly one card tall;
+   each .logo-slot inside is absolutely positioned and animates across it. */
+.logo-row{position:relative;width:100%;height:var(--logo-h)}
+
+/* The moving layer - transform:translateX() only, GPU-accelerated (will-change) */
+.logo-slot{
+  position:absolute;
+  top:0;left:0;
+  width:var(--logo-w);
+  height:var(--logo-h);
+  animation-name:clientsScrollLeft;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+  animation-duration:var(--row-duration,34s);
+  will-change:transform;
+}
+/* Row 2 only: reverse direction */
+.logo-row-right .logo-slot{animation-name:clientsScrollRight}
+
+/* Pause ONLY the hovered logo's own travel - siblings keep animating,
+   this rule targets nothing but the hovered slot itself */
+.logo-slot:hover{animation-play-state:paused}
+
+/* Continuous, no-pause, no-jump loop: card enters fully off the right
+   edge and exits just past the left edge of its own width */
+@keyframes clientsScrollLeft{
+  from{transform:translateX(1400px)}
+  to{transform:translateX(calc(-1 * var(--logo-w) - 40px))}
+}
+@keyframes clientsScrollRight{
+  from{transform:translateX(calc(-1 * var(--logo-w) - 40px))}
+  to{transform:translateX(1400px)}
+}
+
+/* The visible glass badge - matches the site's existing glassmorphism
+   card language (see .service-card / .partner-logo) */
+.logo-card{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 0 18px rgba(108,99,255,0.10);
+  transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease,background 0.35s ease;
+}
+/* Premium hover: scale to 1.05 + stronger purple glow. Lives on the
+   INNER card (not the animated slot) so it never collides with the
+   slot's own translateX transform */
+.logo-slot:hover .logo-card{
+  transform:scale(1.05);
+  box-shadow:0 0 32px rgba(108,99,255,0.5);
+  border-color:rgba(108,99,255,0.5);
+  background:rgba(108,99,255,0.1);
+}
+
+/* Text wordmark used as the logo placeholder - swap for an <img> any time
+   (see .logo-img below, already styled and ready) */
+.logo-mark{
+  font-family:'Poppins',sans-serif;
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+  color:var(--text-light);
+  text-align:center;
+  line-height:1.2;
+  padding:0 0.6rem;
+  white-space:nowrap;
+  transition:color 0.35s ease;
+}
+.logo-slot:hover .logo-mark{color:var(--white)}
+@media (max-width:640px){.logo-mark{font-size:0.72rem;padding:0 0.35rem}}
+
+/* Ready for real logo files: drop <img class="logo-img" src="assets/logos/x.svg">
+   in place of .logo-mark and it will inherit correct sizing + hover state */
+.logo-img{max-width:70%;max-height:55%;object-fit:contain;filter:brightness(0) invert(1);opacity:0.8;transition:opacity 0.35s ease}
+.logo-slot:hover .logo-img{opacity:1}
+
+/* Respect reduced-motion preference: freeze the logo belt in place */
+@media (prefers-reduced-motion:reduce){
+  .logo-slot{animation:none!important}
+}
 .about-badge{position:absolute;background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);backdrop-filter:blur(12px);border-radius:12px;padding:0.75rem 1rem;font-size:0.82rem;font-weight:600;color:var(--white)}
 .badge-tl{top:-20px;left:-20px}
 .badge-br{bottom:-20px;right:-20px}
@@ -541,6 +735,57 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
   </div>
 </section>
 
+<!-- ============================================================
+     CLIENTS ACROSS INDUSTRIES / "Trusted by Global Brands"
+     3-row continuously animated logo showcase (CSS transform-only,
+     no JS animation loop). See the "CLIENTS ACROSS INDUSTRIES —
+     3-ROW ANIMATED LOGO SHOWCASE" CSS block above for how the
+     motion + hover-pause works.
+     ============================================================ -->
+<section id="clients" class="section" aria-label="Trusted by global brands">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Clients Across Industries</div>
+    <h2 class="section-title">Trusted by Global Brands</h2>
+    <p class="section-sub" style="margin:0 auto">Full-Service Web Design Agency</p>
+  </div>
+
+  <div class="clients-rows">
+
+    <!-- Row 1 — scrolls LEFT -->
+    <div class="logo-row" style="--row-duration:36s">
+      <div class="logo-slot" style="animation-delay:0s"><div class="logo-card"><span class="logo-mark">Google</span></div></div>
+      <div class="logo-slot" style="animation-delay:-5.14s"><div class="logo-card"><span class="logo-mark">Meta</span></div></div>
+      <div class="logo-slot" style="animation-delay:-10.29s"><div class="logo-card"><span class="logo-mark">Microsoft</span></div></div>
+      <div class="logo-slot" style="animation-delay:-15.43s"><div class="logo-card"><span class="logo-mark">Amazon</span></div></div>
+      <div class="logo-slot" style="animation-delay:-20.57s"><div class="logo-card"><span class="logo-mark">AWS</span></div></div>
+      <div class="logo-slot" style="animation-delay:-25.71s"><div class="logo-card"><span class="logo-mark">Shopify</span></div></div>
+      <div class="logo-slot" style="animation-delay:-30.86s"><div class="logo-card"><span class="logo-mark">WordPress</span></div></div>
+    </div>
+
+    <!-- Row 2 — scrolls RIGHT -->
+    <div class="logo-row logo-row-right" style="--row-duration:40s">
+      <div class="logo-slot" style="animation-delay:0s"><div class="logo-card"><span class="logo-mark">Cloudflare</span></div></div>
+      <div class="logo-slot" style="animation-delay:-5.71s"><div class="logo-card"><span class="logo-mark">GitHub</span></div></div>
+      <div class="logo-slot" style="animation-delay:-11.43s"><div class="logo-card"><span class="logo-mark">OpenAI</span></div></div>
+      <div class="logo-slot" style="animation-delay:-17.14s"><div class="logo-card"><span class="logo-mark">Stripe</span></div></div>
+      <div class="logo-slot" style="animation-delay:-22.86s"><div class="logo-card"><span class="logo-mark">PayPal</span></div></div>
+      <div class="logo-slot" style="animation-delay:-28.57s"><div class="logo-card"><span class="logo-mark">Hostinger</span></div></div>
+      <div class="logo-slot" style="animation-delay:-34.29s"><div class="logo-card"><span class="logo-mark">WooCommerce</span></div></div>
+    </div>
+
+    <!-- Row 3 — scrolls LEFT -->
+    <div class="logo-row" style="--row-duration:32s">
+      <div class="logo-slot" style="animation-delay:0s"><div class="logo-card"><span class="logo-mark">Fiverr</span></div></div>
+      <div class="logo-slot" style="animation-delay:-5.33s"><div class="logo-card"><span class="logo-mark">Upwork</span></div></div>
+      <div class="logo-slot" style="animation-delay:-10.67s"><div class="logo-card"><span class="logo-mark">Adobe</span></div></div>
+      <div class="logo-slot" style="animation-delay:-16s"><div class="logo-card"><span class="logo-mark">Canva</span></div></div>
+      <div class="logo-slot" style="animation-delay:-21.33s"><div class="logo-card"><span class="logo-mark">Slack</span></div></div>
+      <div class="logo-slot" style="animation-delay:-26.67s"><div class="logo-card"><span class="logo-mark">Zoom</span></div></div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about" style="padding:6rem 0">
   <div class="section">
@@ -563,16 +808,39 @@ box-shadow:0 18px 45px rgba(108,99,255,.65) !important;
                   <div class="logo-shine"></div>
                 </div>
               </div>
-              <!-- MODIFIED: "Trusted By" partner showcase. Clean typographic monograms are used instead of reproducing third-party trademarked logo artwork, styled as minimal white/monochrome badges consistent with the dark premium theme. Swap in licensed official logo files here if available. -->
+              <!-- MODIFIED: "Trusted By" partner showcase, now a continuously animated orbital
+                   system. Clean typographic monograms are used instead of reproducing
+                   third-party trademarked logo artwork, styled as minimal white/monochrome
+                   badges consistent with the dark premium theme (swap in licensed official
+                   logo files here if available). Each logo lives in its own .orbit-rotator so
+                   it can spin around the center at its own starting angle (0deg, 45deg, 90deg...
+                   matching the original clock positions) while the nested .counter-rotator
+                   keeps the glyph itself upright the whole time. -->
               <div class="partner-orbit" id="partnerOrbit">
-                <div class="partner-item" style="left:50%;top:0%" title="Google"><div class="partner-logo">G</div></div>
-                <div class="partner-item" style="left:85.4%;top:14.6%" title="Meta"><div class="partner-logo">Meta</div></div>
-                <div class="partner-item" style="left:100%;top:50%" title="Shopify"><div class="partner-logo">Shpfy</div></div>
-                <div class="partner-item" style="left:85.4%;top:85.4%" title="Microsoft"><div class="partner-logo">MS</div></div>
-                <div class="partner-item" style="left:50%;top:100%" title="Amazon Web Services"><div class="partner-logo">AWS</div></div>
-                <div class="partner-item" style="left:14.6%;top:85.4%" title="GitHub"><div class="partner-logo">GitHub</div></div>
-                <div class="partner-item" style="left:0%;top:50%" title="Cloudflare"><div class="partner-logo">CF</div></div>
-                <div class="partner-item" style="left:14.6%;top:14.6%" title="WordPress"><div class="partner-logo">WP</div></div>
+                <div class="orbit-rotator" style="--start-angle:0deg" title="Google">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:0deg"><div class="partner-logo">G</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:45deg" title="Meta">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:45deg"><div class="partner-logo">Meta</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:90deg" title="Shopify">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:90deg"><div class="partner-logo">Shpfy</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:135deg" title="Microsoft">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:135deg"><div class="partner-logo">MS</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:180deg" title="Amazon Web Services">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:180deg"><div class="partner-logo">AWS</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:225deg" title="GitHub">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:225deg"><div class="partner-logo">GitHub</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:270deg" title="Cloudflare">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:270deg"><div class="partner-logo">CF</div></div></div>
+                </div>
+                <div class="orbit-rotator" style="--start-angle:315deg" title="WordPress">
+                  <div class="orbit-radius"><div class="counter-rotator" style="--start-angle:315deg"><div class="partner-logo">WP</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -1135,6 +1403,31 @@ setTimeout(()=>{
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
+})();
+
+// MODIFIED: fallback for browsers that don't support the CSS :has() selector.
+// Native CSS (.orbit-rotator:has(.partner-logo:hover)) already pauses only the
+// hovered logo's orbit; this only runs when that selector is unsupported, and
+// reproduces the same "pause just this one, resume smoothly after" behavior
+// by toggling an .is-paused class on that logo's rotator + counter-rotator.
+(function(){
+  var track = document.getElementById('partnerOrbit');
+  if(!track) return;
+  var supportsHas = window.CSS && CSS.supports && CSS.supports('selector(:has(a))');
+  if(supportsHas) return; // native CSS already handles hover-pause
+  track.querySelectorAll('.orbit-rotator').forEach(function(rotator){
+    var logo = rotator.querySelector('.partner-logo');
+    var counter = rotator.querySelector('.counter-rotator');
+    if(!logo) return;
+    logo.addEventListener('mouseenter', function(){
+      rotator.classList.add('is-paused');
+      if(counter) counter.classList.add('is-paused');
+    });
+    logo.addEventListener('mouseleave', function(){
+      rotator.classList.remove('is-paused');
+      if(counter) counter.classList.remove('is-paused');
+    });
+  });
 })();
 </script>
 
