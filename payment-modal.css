@@ -1,0 +1,209 @@
+/* ============================================================
+   payment-modal.css
+   ----------------------------------------------------------
+   Styles for the pricing checkout / payment modal only.
+   Uses the same design tokens (CSS custom properties) already
+   defined on the host page's :root, so it inherits the site's
+   dark premium theme automatically.
+   ============================================================ */
+
+/* ---- Make pricing cards clickable without touching .service-card ---- */
+.pricing-card{cursor:pointer}
+.pricing-card:focus-visible{outline:2px solid var(--primary);outline-offset:4px;border-radius:20px}
+
+/* ---- Overlay ---- */
+.pm-overlay{
+  position:fixed;inset:0;z-index:2000;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.25rem;
+  background:rgba(6,10,20,0.72);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;visibility:hidden;
+  transition:opacity 0.3s ease,visibility 0.3s ease;
+}
+.pm-overlay.pm-open{opacity:1;visibility:visible}
+
+/* ---- Modal shell ---- */
+.pm-modal{
+  position:relative;width:100%;max-width:560px;max-height:90vh;
+  overflow-y:auto;
+  background:linear-gradient(180deg,rgba(30,41,59,0.92),rgba(15,23,42,0.96));
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  box-shadow:0 30px 90px rgba(0,0,0,0.55),0 0 0 1px rgba(108,99,255,0.08),0 0 60px rgba(108,99,255,0.12);
+  padding:2rem;
+  transform:translateY(24px) scale(0.96);
+  opacity:0;
+  transition:transform 0.35s cubic-bezier(.19,1,.22,1),opacity 0.3s ease;
+}
+.pm-overlay.pm-open .pm-modal{transform:translateY(0) scale(1);opacity:1}
+.pm-modal::-webkit-scrollbar{width:6px}
+.pm-modal::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+.pm-close{
+  position:absolute;top:1.1rem;right:1.1rem;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--glass);border:1px solid var(--glass-border);
+  color:var(--text-light);font-size:1.3rem;line-height:1;
+  transition:all 0.25s;
+}
+.pm-close:hover{background:rgba(108,99,255,0.18);border-color:var(--primary);color:#fff;transform:rotate(90deg)}
+
+/* ---- Header ---- */
+.pm-header{margin-bottom:1.5rem;padding-right:2rem}
+.pm-header-badge{
+  display:inline-block;background:rgba(108,99,255,0.15);color:var(--primary);
+  font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.3rem 0.85rem;border-radius:50px;border:1px solid rgba(108,99,255,0.3);
+  margin-bottom:0.75rem;
+}
+.pm-header h3{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:0.35rem}
+.pm-header-sub{color:var(--text-gray);font-size:0.88rem}
+.pm-header-sub span{color:var(--text-light);font-weight:600}
+
+/* ---- Form ---- */
+.pm-form{display:flex;flex-direction:column;gap:1.1rem}
+.pm-section-label{
+  font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:600;color:var(--white);
+  text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.15rem;
+}
+.pm-field{display:flex;flex-direction:column;gap:0.5rem}
+.pm-field label{font-size:0.83rem;font-weight:500;color:var(--text-light);letter-spacing:0.02em}
+.pm-field .pm-optional{color:var(--text-gray);font-weight:400;font-size:0.78rem}
+.pm-field input,.pm-field select{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;padding:0.75rem 1rem;font-size:0.9rem;color:var(--white);
+  font-family:'Inter',sans-serif;transition:all 0.3s;outline:none;width:100%;
+}
+.pm-field input::placeholder{color:var(--text-gray)}
+.pm-field select option{background:#1E293B;color:var(--white)}
+.pm-field input:focus,.pm-field select:focus{
+  border-color:var(--primary);background:rgba(108,99,255,0.08);
+  box-shadow:0 0 0 3px rgba(108,99,255,0.15);
+}
+.pm-field.pm-invalid input,.pm-field.pm-invalid select{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,0.15)}
+.pm-error-text{display:none;color:#f87171;font-size:0.76rem}
+.pm-field.pm-invalid .pm-error-text{display:block}
+.pm-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* ---- Payment methods ---- */
+.pm-methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem}
+.pm-method{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;
+  padding:0.85rem 0.5rem;transition:all 0.25s;text-align:center;
+}
+.pm-method:hover{border-color:rgba(108,99,255,0.4);transform:translateY(-2px)}
+.pm-method input{position:absolute;opacity:0;width:0;height:0}
+.pm-method-label{font-size:0.76rem;font-weight:600;color:var(--text-light)}
+.pm-method-icon{height:26px;display:flex;align-items:center;justify-content:center}
+.pm-method-icon svg{height:100%;width:auto}
+.pm-method.pm-selected{border-color:var(--primary);background:rgba(108,99,255,0.14);box-shadow:0 0 0 1px var(--primary),0 8px 24px rgba(108,99,255,0.25)}
+.pm-method.pm-selected .pm-method-label{color:#fff}
+.pm-card-brands{display:flex;gap:0.5rem;align-items:center;margin-top:0.35rem;flex-wrap:wrap}
+.pm-card-brands svg{height:18px;width:auto;opacity:0.9}
+.pm-stripe-card-mount{
+  margin-top:0.85rem;border:1px dashed var(--glass-border);border-radius:10px;
+  padding:0.85rem 1rem;font-size:0.78rem;color:var(--text-gray);
+}
+
+/* ---- Order summary ---- */
+.pm-summary{
+  background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);
+  border-radius:14px;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:0.55rem;
+}
+.pm-summary-row{display:flex;align-items:center;justify-content:space-between;font-size:0.86rem;color:var(--text-light)}
+.pm-summary-row.pm-total{
+  border-top:1px solid var(--glass-border);margin-top:0.15rem;padding-top:0.65rem;
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);
+}
+
+/* ---- Secure notice ---- */
+.pm-secure-notice{
+  display:flex;align-items:center;gap:0.5rem;justify-content:center;
+  color:var(--text-gray);font-size:0.78rem;text-align:center;
+}
+.pm-secure-notice svg{flex-shrink:0}
+
+/* ---- Submit button (reuses site gradient) ---- */
+.pm-submit-btn{
+  background:linear-gradient(135deg,#6C63FF,#8B5CF6);color:#fff;
+  padding:0.9rem 2rem;border-radius:50px;font-size:0.95rem;font-weight:600;
+  width:100%;transition:all 0.3s;letter-spacing:0.02em;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+}
+.pm-submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(108,99,255,0.5)}
+.pm-submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ---- Enterprise view ---- */
+.pm-enterprise{display:flex;flex-direction:column;gap:1.25rem;text-align:center;padding:0.5rem 0 0.25rem}
+.pm-enterprise-icon{
+  width:64px;height:64px;border-radius:18px;margin:0 auto;
+  background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.pm-enterprise h4{font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:700;color:var(--white)}
+.pm-enterprise p{color:var(--text-gray);font-size:0.88rem;max-width:380px;margin:0 auto;line-height:1.7}
+.pm-enterprise-actions{display:flex;flex-direction:column;gap:0.75rem;margin-top:0.25rem}
+.pm-enterprise-btn{
+  display:flex;align-items:center;justify-content:space-between;gap:0.75rem;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;
+  padding:0.9rem 1.1rem;text-align:left;transition:all 0.25s;color:var(--white);
+}
+.pm-enterprise-btn:hover{border-color:rgba(108,99,255,0.4);background:rgba(108,99,255,0.1);transform:translateY(-2px)}
+.pm-enterprise-btn .pm-eb-title{font-weight:600;font-size:0.92rem}
+.pm-enterprise-btn .pm-eb-sub{font-size:0.76rem;color:var(--text-gray);margin-top:0.15rem}
+.pm-enterprise-btn.pm-primary{background:linear-gradient(135deg,#6C63FF,#8B5CF6);border-color:transparent}
+.pm-enterprise-btn.pm-primary .pm-eb-sub{color:rgba(255,255,255,0.8)}
+
+/* ---- Processing / spinner ---- */
+.pm-processing{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:2.5rem 1rem}
+.pm-spinner{width:56px;height:56px;border-radius:50%;border:3px solid var(--glass-border);border-top-color:var(--primary);animation:pmSpin 0.8s linear infinite}
+@keyframes pmSpin{to{transform:rotate(360deg)}}
+.pm-processing p{color:var(--text-gray);font-size:0.9rem}
+
+/* ---- Success view ---- */
+.pm-success{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem 1rem;text-align:center}
+.pm-success-circle{
+  width:84px;height:84px;border-radius:50%;
+  background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.4);
+  display:flex;align-items:center;justify-content:center;
+  animation:pmPopIn 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pmPopIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.pm-success-check{stroke-dasharray:48;stroke-dashoffset:48;animation:pmDrawCheck 0.5s 0.25s ease forwards}
+@keyframes pmDrawCheck{to{stroke-dashoffset:0}}
+.pm-success h4{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white)}
+.pm-success p{color:var(--text-gray);font-size:0.9rem;max-width:320px}
+.pm-success-redirect{font-size:0.78rem;color:var(--text-gray);margin-top:0.25rem}
+
+/* ---- Error view ---- */
+.pm-error{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem 1rem;text-align:center}
+.pm-error-circle{
+  width:84px;height:84px;border-radius:50%;
+  background:rgba(248,113,113,0.15);border:1px solid rgba(248,113,113,0.4);
+  display:flex;align-items:center;justify-content:center;
+  animation:pmShake 0.5s ease;
+}
+@keyframes pmShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.pm-error h4{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white)}
+.pm-error p{color:var(--text-gray);font-size:0.9rem;max-width:320px}
+.pm-error-actions{display:flex;gap:0.75rem;width:100%;margin-top:0.5rem}
+.pm-error-actions .pm-submit-btn{width:auto;flex:1}
+.pm-retry-btn{background:transparent;border:1px solid var(--glass-border);color:var(--white)}
+.pm-retry-btn:hover{background:var(--glass);border-color:var(--primary)}
+
+[hidden]{display:none !important}
+
+/* ---- Mobile ---- */
+@media (max-width:640px){
+  .pm-modal{padding:1.5rem;border-radius:20px;max-height:94vh}
+  .pm-row{grid-template-columns:1fr}
+  .pm-methods-grid{grid-template-columns:repeat(2,1fr)}
+  .pm-error-actions{flex-direction:column}
+  .pm-header h3{font-size:1.25rem}
+}
+@media (max-width:380px){
+  .pm-methods-grid{grid-template-columns:1fr}
+}
