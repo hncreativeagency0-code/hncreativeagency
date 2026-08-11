@@ -434,5 +434,5 @@
 
   // Expose for manual triggering if needed elsewhere.
   window.openPaymentModal = openModal;
-  window.closePaymentModal = closeModal;
+  window.closePaymentModal = closeModal; 
 })();
